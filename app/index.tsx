@@ -3,7 +3,7 @@
  * Wires together: GameGrid, ScoreBoard, GameOverModal, useGameState
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -17,10 +17,29 @@ import { useGameState } from '../src/hooks/useGameState';
 import { GameGrid } from '../src/components/GameGrid';
 import { ScoreBoard } from '../src/components/ScoreBoard';
 import { GameOverModal } from '../src/components/GameOverModal';
+import { getMuted, getMutedSync, toggleMuted } from '../src/storage/soundStorage';
 
 export default function GameScreen() {
   const { state, selectCell, restart } = useGameState();
   const { width } = useWindowDimensions();
+  const [muted, setMutedState] = useState<boolean>(() => getMutedSync());
+
+  useEffect(() => {
+    let mounted = true;
+    getMuted().then((isMuted) => {
+      if (mounted) {
+        setMutedState(isMuted);
+      }
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const handleToggleMute = async () => {
+    const next = await toggleMuted();
+    setMutedState(next);
+  };
 
   const isWide = width >= 768;
 
@@ -51,6 +70,15 @@ export default function GameScreen() {
             movesLeft={state.movesLeft}
             lastScore={state.lastScore}
           />
+          <TouchableOpacity
+            style={styles.muteBtn}
+            onPress={handleToggleMute}
+            accessibilityLabel={muted ? 'Unmute sound' : 'Mute sound'}
+            accessibilityRole="button"
+            accessibilityState={{ selected: muted }}
+          >
+            <Text style={styles.muteIcon}>{muted ? '🔇' : '🔊'}</Text>
+          </TouchableOpacity>
         </View>
 
         {/* Game Grid */}
@@ -128,11 +156,27 @@ const styles = StyleSheet.create({
   scoreRow: {
     width: '100%',
     maxWidth: 560,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 12,
+    gap: 8,
   },
   scoreRowWide: {
     maxWidth: 560,
+  },
+  muteBtn: {
+    backgroundColor: '#1A1A4E',
+    borderRadius: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: '#4A4A8A',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  muteIcon: {
+    fontSize: 18,
   },
   gridContainer: {
     alignItems: 'center',
