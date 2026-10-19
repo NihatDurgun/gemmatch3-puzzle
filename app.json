@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "GemBlast",
+    "slug": "gemblast",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1a0533"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gemblast.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1a0533"
+      },
+      "package": "com.gemblast.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    }
+  }
+}
