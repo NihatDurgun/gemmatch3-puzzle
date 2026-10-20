@@ -6,11 +6,11 @@
 export const BOARD_SIZE = 8;
 
 export enum PieceType {
-  Ruby = 'Ruby',
-  Sapphire = 'Sapphire',
-  Emerald = 'Emerald',
-  Topaz = 'Topaz',
-  Amethyst = 'Amethyst',
+  Ruby = 'ruby',
+  Sapphire = 'sapphire',
+  Emerald = 'emerald',
+  Topaz = 'topaz',
+  Amethyst = 'amethyst',
 }
 
 export const ALL_PIECE_TYPES: PieceType[] = [
@@ -21,10 +21,8 @@ export const ALL_PIECE_TYPES: PieceType[] = [
   PieceType.Amethyst,
 ];
 
-export type Cell = PieceType | null;
-
 /** 8×8 grid – row-major: board[row][col] */
-export type Board = Cell[][];
+export type Board = (PieceType | null)[][];
 
 /** Create an empty 8×8 board */
 export function emptyBoard(): Board {
