@@ -1,5 +1,14 @@
 # GemBlast 💎
 
+## Project status
+
+- **8×8 Grid Generation**: Deterministic starting board generation with 5 distinct gem types guaranteed to have zero pre-existing matches (`src/engine/board.ts`).
+- **Swap Validation & Rollback**: Orthogonal neighbor swapping with automatic rollback on non-matching moves without move penalty (`src/engine/swap.ts`).
+- **Match Detection & Cascades**: Full horizontal and vertical match-3, 4, 5, and multi-line detection with gravity-driven piece drops, refills, and recursive cascade resolution (`src/engine/match.ts`, `src/engine/gravity.ts`, `src/engine/cascade.ts`).
+- **Combo Scoring Engine**: Dynamic score multipliers for larger matches and multi-stage cascade chains (`src/engine/score.ts`).
+- **Cross-Platform Interactive UI**: Responsive React Native / Expo UI supporting mobile touch and web mouse click-to-select and click-to-swap controls.
+- **Game Lifecycle & Progression**: Move countdown limit (30 moves), real-time score display, and Game Over modal with instant restart functionality.
+
 GemBlast is an autonomous, cross-platform match-3 puzzle game built with **TypeScript**, **React Native**, and **Expo** (supporting Web, iOS, and Android). It delivers smooth, responsive touch and mouse interactions, dynamic match cascades, a custom visual identity, and a deterministic pure-TypeScript engine.
 
 ---
