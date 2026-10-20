@@ -1,5 +1,8 @@
 # GemBlast 💎
 
+> Maintainer note (conflict test): this block was added directly on main.
+
+
 
 ## Contributing
 
