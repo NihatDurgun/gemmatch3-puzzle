@@ -1,5 +1,8 @@
 # GemBlast 💎
 
+> Maintainer note 1792520329 (conflict test): this block was added directly on main.
+
+
 ## Architecture
 
 - **`app/`**: Application entry points and navigation screen routes using Expo Router.
