@@ -74,7 +74,9 @@ describe('validateSwap', () => {
 
   it('returns invalid when swap creates no match', () => {
     // Build a board where no swap of (0,0)↔(0,1) creates a match
-    const board = Array.from({ length: 8 }, () => Array(8).fill(S) as PieceType[]);
+    const board = Array.from({ length: 8 }, (_, r) =>
+      Array.from({ length: 8 }, (_, c) => ((r + c) % 2 === 0 ? S : T) as PieceType)
+    );
     board[0][0] = R;
     board[0][1] = E;
     // No surrounding rubies or emeralds to form a match
@@ -117,8 +119,8 @@ describe('validateSwap', () => {
   });
 
   it('does not decrement moves on invalid swap (board unchanged)', () => {
-    const board = Array.from({ length: 8 }, () =>
-      Array(8).fill(S) as PieceType[]
+    const board = Array.from({ length: 8 }, (_, r) =>
+      Array.from({ length: 8 }, (_, c) => ((r + c) % 2 === 0 ? S : T) as PieceType)
     );
     board[0][0] = R;
     board[0][1] = E;
