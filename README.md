@@ -1,5 +1,12 @@
 # GemBlast 💎
 
+## FAQ
+
+- **Match rules**: How do I make a match? Swap any two adjacent gems horizontally or vertically to line up 3 or more gems of the same type. Invalid swaps that create no match automatically revert.
+- **Scoring**: How does scoring work? Clearing matched gems earns points proportional to match size and consecutive cascade combos, with points added directly to your current score.
+- **Boosters**: Are there boosters or special effects? Creating matches of 4 or 5 gems triggers special explosive power-ups and color clears that blast entire rows or gem types.
+- **Saving progress**: Is my game progress saved? Your best score and settings are automatically saved locally on your device via persistent local storage.
+
 > Maintainer note 1792520976 (conflict test): this block was added directly on main.
 
 
