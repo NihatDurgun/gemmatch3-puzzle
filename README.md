@@ -1,5 +1,13 @@
 # GemBlast 💎
 
+## Roadmap
+
+- **Special Power Gems & Boosters**: Introduce 4-match line-clearing rockets, 5-match color bombs, and T/L shape explosive gems for dramatic board clears.
+- **Audio & Haptic Feedback**: Add interactive sound effects for swaps, match clears, cascades, and haptic vibrations on mobile devices.
+- **Persistent High Scores & Leaderboard**: Store personal best scores and statistics locally or sync with an online leaderboard.
+- **Time Attack & Challenge Modes**: Add a timed mode with speed bonuses alongside the classic 30-move puzzle mode.
+- **Particle & Cascade Animations**: Enhance visual polish with smooth falling piece animations and gem disintegration particle effects.
+
 > Maintainer note (conflict test): this block was added directly on main.
 
 
