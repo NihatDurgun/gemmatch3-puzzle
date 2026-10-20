@@ -1,5 +1,12 @@
 # GemBlast 💎
 
+## Credits
+
+- **Expo**: Robust cross-platform framework and developer tooling powering the mobile and web application runtimes.
+- **React Native**: Core component architecture and mobile UI rendering framework for cross-platform support.
+- **TypeScript**: Static typing and type safety across all match-3 game logic, components, and storage models.
+- **Jest**: Comprehensive unit and integration testing framework for verifying core game engine rules and behaviors.
+
 ## FAQ
 
 - **Match rules**: How do I make a match? Swap any two adjacent gems horizontally or vertically to line up 3 or more gems of the same type. Invalid swaps that create no match automatically revert.
