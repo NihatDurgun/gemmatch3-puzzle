@@ -1,5 +1,13 @@
 # GemBlast 💎
 
+
+## Troubleshooting
+
+- **Dependency installation issues**: If encountering errors during `npm install` or `yarn install`, remove `node_modules` and the lockfile (`rm -rf node_modules package-lock.json yarn.lock`), then re-run `npm install` or `yarn install` using a supported Node.js version.
+- **Metro cache clearance**: Clear corrupted Metro bundler cache by running `npx expo start -c` to reset the cache and restart the dev server cleanly.
+- **Web build failure resolution**: If `npm run build:web` fails, ensure all Expo dependencies are aligned (`npx expo install --check`) and that platform-specific code handles web fallbacks properly.
+- **Test execution & Jest failures**: If tests fail when running `npm run test`, ensure your environment matches Jest requirements, clear Jest cache (`npx jest --clearCache`), and verify that mocks for native modules are properly configured.
+
 > Maintainer note 1792520329 (conflict test): this block was added directly on main.
 
 
