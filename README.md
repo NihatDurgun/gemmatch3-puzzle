@@ -1,5 +1,13 @@
 # GemBlast 💎
 
+
+## Contributing
+
+- **Running tests**: Execute `npm run test` to run the Jest test suite across engine and UI components.
+- **Running typechecker**: Execute `npm run typecheck` to verify TypeScript types with `tsc --noEmit`.
+- **Branch naming**: Use descriptive branch names with conventional prefixes such as `feature/<name>`, `fix/<name>`, or `chore/<name>`.
+- **Opening pull requests**: Open a PR against the `main` branch with a clear description of changes, linked issues, and verification results.
+
 ## Roadmap
 
 - **Special Power Gems & Boosters**: Introduce 4-match line-clearing rockets, 5-match color bombs, and T/L shape explosive gems for dramatic board clears.
