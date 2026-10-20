@@ -13,12 +13,14 @@ import {
   ScrollView,
   useWindowDimensions,
 } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useGameState } from '../src/hooks/useGameState';
 import { GameGrid } from '../src/components/GameGrid';
 import { ScoreBoard } from '../src/components/ScoreBoard';
 import { GameOverModal } from '../src/components/GameOverModal';
 
 export default function GameScreen() {
+  const router = useRouter();
   const { state, selectCell, restart } = useGameState();
   const { width } = useWindowDimensions();
 
@@ -33,14 +35,24 @@ export default function GameScreen() {
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.logo}>💎 GemBlast</Text>
-          <TouchableOpacity
-            style={styles.restartBtn}
-            onPress={restart}
-            accessibilityLabel="Restart game"
-            accessibilityRole="button"
-          >
-            <Text style={styles.restartText}>New Game</Text>
-          </TouchableOpacity>
+          <View style={styles.headerActions}>
+            <TouchableOpacity
+              style={styles.leaderboardBtn}
+              onPress={() => router.push('/leaderboard')}
+              accessibilityLabel="View leaderboard"
+              accessibilityRole="button"
+            >
+              <Text style={styles.leaderboardText}>🏆 Scores</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.restartBtn}
+              onPress={restart}
+              accessibilityLabel="Restart game"
+              accessibilityRole="button"
+            >
+              <Text style={styles.restartText}>New Game</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Score Board */}
@@ -78,6 +90,7 @@ export default function GameScreen() {
         visible={state.phase === 'gameover'}
         score={state.score}
         onRestart={restart}
+        onViewLeaderboard={() => router.push('/leaderboard')}
       />
     </SafeAreaView>
   );
@@ -110,6 +123,25 @@ const styles = StyleSheet.create({
     textShadowColor: '#8E24AA',
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 8,
+  },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  leaderboardBtn: {
+    backgroundColor: '#1E1E3F',
+    borderRadius: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderWidth: 1,
+    borderColor: '#3D3D7A',
+  },
+  leaderboardText: {
+    color: '#FFD700',
+    fontSize: 14,
+    fontWeight: '700',
+    letterSpacing: 0.5,
   },
   restartBtn: {
     backgroundColor: '#1A1A4E',

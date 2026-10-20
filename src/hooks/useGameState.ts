@@ -8,6 +8,7 @@ import { Board, createBoard } from '../engine/board';
 import { validateSwap } from '../engine/swap';
 import { resolveCascade } from '../engine/cascade';
 import { getBestScore, getBestScoreSync, saveBestScore } from '../storage/scoreStorage';
+import { recordScore } from '../storage/leaderboardStorage';
 
 export type GamePhase = 'playing' | 'animating' | 'gameover';
 
@@ -89,8 +90,11 @@ export function useGameState() {
         const phase: GamePhase = newMoves <= 0 ? 'gameover' : 'playing';
         const bestScore = Math.max(prev.bestScore, newScore);
 
-        if (phase === 'gameover' && newScore > prev.bestScore) {
-          saveBestScore(newScore);
+        if (phase === 'gameover') {
+          recordScore(newScore);
+          if (newScore > prev.bestScore) {
+            saveBestScore(newScore);
+          }
         }
 
         return {
