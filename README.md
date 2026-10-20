@@ -1,5 +1,8 @@
 # GemBlast 💎
 
+> Maintainer note 1792521856 (conflict test): this block was added directly on main.
+
+
 ## FAQ
 
 - **Match rules**: How do I make a match? Swap any two adjacent gems horizontally or vertically to line up 3 or more gems of the same type. Invalid swaps that create no match automatically revert.
