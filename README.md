@@ -1,5 +1,8 @@
 # GemBlast 💎
 
+> Maintainer note (conflict test): this block was added directly on main.
+
+
 ## Project status
 
 - **8×8 Grid Generation**: Deterministic starting board generation with 5 distinct gem types guaranteed to have zero pre-existing matches (`src/engine/board.ts`).
