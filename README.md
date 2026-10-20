@@ -1,5 +1,12 @@
 # GemBlast 💎
 
+## Architecture
+
+- **`app/`**: Application entry points and navigation screen routes using Expo Router.
+- **`src/engine/`**: Pure, deterministic TypeScript match-3 game logic (board generation, swap validation, match detection, gravity/cascade resolution, and score calculations).
+- **`src/storage/`**: Persistence adapters for best scores and player settings with cross-platform and web local storage support.
+- **`tests`**: Automated unit and integration test suites covering the core engine, UI components, and storage mechanisms.
+
 > Maintainer note (conflict test): this block was added directly on main.
 
 
