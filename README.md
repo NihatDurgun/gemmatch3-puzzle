@@ -1,5 +1,8 @@
 # GemBlast 💎
 
+> Maintainer note (conflict test): this block was added directly on main.
+
+
 ## Roadmap
 
 - **Special Power Gems & Boosters**: Introduce 4-match line-clearing rockets, 5-match color bombs, and T/L shape explosive gems for dramatic board clears.
