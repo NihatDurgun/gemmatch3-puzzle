@@ -1,13 +1,24 @@
-import React from 'react';
-import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { GameGrid } from '../src/components/GameGrid';
+import { ScoreBoard } from '../src/components/ScoreBoard';
+import { GameOverModal } from '../src/components/GameOverModal';
+import { useGameState } from '../src/engine/useGameState';
 
 export default function App() {
+  const { board, score, moves, isGameOver, restartGame, handlePressGem } = useGameState();
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <StatusBar style="light" />
+      <View style={styles.header}>
         <Text style={styles.title}>GemBlast</Text>
         <Text style={styles.subtitle}>Match 3 gems</Text>
-        {/* Game content will go here */}
+      </View>
+      <View style={styles.gameContainer}>
+        <ScoreBoard score={score} moves={moves} />
+        <GameGrid board={board} onPressGem={handlePressGem} />
+        <GameOverModal visible={isGameOver} score={score} onRestart={restartGame} />
       </View>
     </SafeAreaView>
   );
@@ -17,21 +28,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0f172a', // Slate 900 from design system
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    padding: 32, // spacing_xxl from design system (assuming 32px for xxl)
+    justifyContent: 'center',
+  },
+  header: {
+    marginBottom: 20,
+    alignItems: 'center',
   },
   title: {
-    fontSize: 32, // heading_xl from design system (assuming 32px)
+    fontSize: 48,
     fontWeight: 'bold',
-    color: '#8b5cf6', // color_primary (Purple 500) from design system
-    marginBottom: 8, // spacing_md from design system (assuming 8px)
+    color: '#f8fafc', // Slate 50 from design system
   },
   subtitle: {
-    fontSize: 16, // subtitle from design system (assuming 16px)
-    color: '#94a3b8', // color_secondary (Slate 400) from design system
+    fontSize: 20,
+    color: '#94a3b8', // Slate 400 from design system
+  },
+  gameContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
