@@ -1,12 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { GameGrid } from '../src/components/GameGrid';
 import { ScoreBoard } from '../src/components/ScoreBoard';
 import { GameOverModal } from '../src/components/GameOverModal';
-import { useGameState } from '../src/engine/useGameState';
+import { useGameState } from '../src/hooks/useGameState';
 
 export default function App() {
-  const { board, score, moves, isGameOver, restartGame, handlePressGem } = useGameState();
+  const { state, selectCell, restart } = useGameState();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -16,9 +17,22 @@ export default function App() {
         <Text style={styles.subtitle}>Match 3 gems</Text>
       </View>
       <View style={styles.gameContainer}>
-        <ScoreBoard score={score} moves={moves} />
-        <GameGrid board={board} onPressGem={handlePressGem} />
-        <GameOverModal visible={isGameOver} score={score} onRestart={restartGame} />
+        <ScoreBoard
+          score={state.score}
+          bestScore={state.bestScore}
+          movesLeft={state.movesLeft}
+          lastScore={state.lastScore}
+        />
+        <GameGrid
+          board={state.board}
+          selectedCell={state.selectedCell}
+          onCellPress={selectCell}
+        />
+        <GameOverModal
+          visible={state.phase === 'gameover'}
+          score={state.score}
+          onRestart={restart}
+        />
       </View>
     </SafeAreaView>
   );
