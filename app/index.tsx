@@ -1,150 +1,37 @@
-/**
- * GemBlast – Main Game Screen (Expo Router index)
- * Wires together: GameGrid, ScoreBoard, GameOverModal, useGameState
- */
-
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
-  useWindowDimensions,
-} from 'react-native';
-import { useGameState } from '../src/hooks/useGameState';
-import { GameGrid } from '../src/components/GameGrid';
-import { ScoreBoard } from '../src/components/ScoreBoard';
-import { GameOverModal } from '../src/components/GameOverModal';
+import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
 
-export default function GameScreen() {
-  const { state, selectCell, restart } = useGameState();
-  const { width } = useWindowDimensions();
-
-  const isWide = width >= 768;
-
+export default function App() {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={styles.logo}>💎 GemBlast</Text>
-          <TouchableOpacity
-            style={styles.restartBtn}
-            onPress={restart}
-            accessibilityLabel="Restart game"
-            accessibilityRole="button"
-          >
-            <Text style={styles.restartText}>New Game</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Score Board */}
-        <View style={[styles.scoreRow, isWide && styles.scoreRowWide]}>
-          <ScoreBoard
-            score={state.score}
-            bestScore={state.bestScore}
-            movesLeft={state.movesLeft}
-            lastScore={state.lastScore}
-          />
-        </View>
-
-        {/* Game Grid */}
-        <View style={styles.gridContainer}>
-          <GameGrid
-            board={state.board}
-            selectedCell={state.selectedCell}
-            onCellPress={selectCell}
-            disabled={state.phase !== 'playing'}
-          />
-        </View>
-
-        {/* Hint text */}
-        <Text style={styles.hint}>
-          {state.phase === 'playing'
-            ? 'Tap a gem, then tap an adjacent gem to swap'
-            : state.phase === 'gameover'
-            ? 'Game Over! Tap "New Game" to play again'
-            : ''}
-        </Text>
-      </ScrollView>
-
-      {/* Game Over Modal */}
-      <GameOverModal
-        visible={state.phase === 'gameover'}
-        score={state.score}
-        onRestart={restart}
-      />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.title}>GemBlast</Text>
+        <Text style={styles.subtitle}>Match 3 gems</Text>
+        {/* Game content will go here */}
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
-    backgroundColor: '#0F0F1E',
+    backgroundColor: '#0f172a', // Slate 900 from design system
   },
-  scrollContent: {
-    flexGrow: 1,
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 20,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    maxWidth: 560,
-    marginBottom: 20,
-  },
-  logo: {
-    fontSize: 28,
-    fontWeight: '900',
-    color: '#FFD700',
-    letterSpacing: 1,
-    textShadowColor: '#8E24AA',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 8,
-  },
-  restartBtn: {
-    backgroundColor: '#1A1A4E',
-    borderRadius: 12,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderWidth: 1,
-    borderColor: '#4A4A8A',
-  },
-  restartText: {
-    color: '#9090C0',
-    fontSize: 14,
-    fontWeight: '700',
-    letterSpacing: 0.5,
-  },
-  scoreRow: {
-    width: '100%',
-    maxWidth: 560,
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  scoreRowWide: {
-    maxWidth: 560,
-  },
-  gridContainer: {
-    alignItems: 'center',
+  content: {
+    flex: 1,
     justifyContent: 'center',
-    marginVertical: 8,
+    alignItems: 'center',
+    padding: 32, // spacing_xxl from design system (assuming 32px for xxl)
   },
-  hint: {
-    marginTop: 16,
-    color: '#6060A0',
-    fontSize: 13,
-    textAlign: 'center',
-    paddingHorizontal: 24,
-    letterSpacing: 0.3,
+  title: {
+    fontSize: 32, // heading_xl from design system (assuming 32px)
+    fontWeight: 'bold',
+    color: '#8b5cf6', // color_primary (Purple 500) from design system
+    marginBottom: 8, // spacing_md from design system (assuming 8px)
+  },
+  subtitle: {
+    fontSize: 16, // subtitle from design system (assuming 16px)
+    color: '#94a3b8', // color_secondary (Slate 400) from design system
   },
 });
